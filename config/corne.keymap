@@ -84,7 +84,7 @@
             //                      | GUI  | SPC  | DEL  |   | ENT  | BSP  | ALT  |
             //                      |      | NAV  | NUM  |   | SYM  | NUM  |      |
             // Combos (base only): W+F (   U+Y )   X+C [   ,+. ]   D+V {   K+H }
-            bindings = 
+            bindings = <
             &kp TAB   &kp Q  &kp W          &kp F          &kp P          &kp B     &kp J  &kp L            &kp U          &kp Y          &kp SEMI  &kp SQT
             &kp ESC   &kp A  &hml LALT R    &hml LCTRL S   &hml LSHFT T   &kp G     &kp M  &hmr LSHFT N     &hmr LCTRL E   &hmr LALT I    &kp O     &kp MINUS
             &kp LCTRL &kp Z  &kp X          &kp C          &kp D          &kp V     &kp K  &kp H            &kp COMMA      &kp DOT        &kp FSLH  &kp RSHFT
@@ -99,7 +99,7 @@
             // | ____ |  ^Z  |  ^X  |  ^C  |  ^Y  |  ^V  |   | DEL  | BSPC | ^LFT | ^RGT |      | ____ |
             //                      | ____ | ____ | ____ |   | ____ | ____ | ____ |
             // ^Z undo, ^X cut, ^C copy, ^Y redo, ^V paste, ^LFT/^RGT word jump
-            bindings = 
+            bindings = <
             &trans &none      &none      &none       &none       &none       &none   &kp HOME  &kp PG_UP     &kp PG_DN      &kp END   &trans
             &trans &kp LGUI   &kp LALT   &kp LCTRL   &kp LSHFT   &none       &none   &kp LEFT  &kp DOWN      &kp UP         &kp RIGHT &trans
             &trans &kp LC(Z)  &kp LC(X)  &kp LC(C)   &kp LC(Y)   &kp LC(V)   &kp DEL &kp BSPC  &kp LC(LEFT)  &kp LC(RIGHT)  &none     &trans
@@ -114,7 +114,7 @@
             // | ____ | F12  |  F1  |  F2  |  F3  | BTCLR|   |  0   |  1   |  2   |  3   |  .   | ____ |
             //                      | ____ | ____ | ____ |   | ____ | ____ | ____ |
             // BT0/BT1 select Bluetooth profile 0/1, BTCLR clears the current profile
-            bindings = 
+            bindings = <
             &trans &kp F10  &kp F7  &kp F8  &kp F9  &bt BT_SEL 0   &none   &kp N7  &kp N8  &kp N9  &kp SLASH &kp MINUS
             &trans &kp F11  &kp F4  &kp F5  &kp F6  &bt BT_SEL 1   &none   &kp N4  &kp N5  &kp N6  &kp STAR  &kp PLUS
             &trans &kp F12  &kp F1  &kp F2  &kp F3  &bt BT_CLR     &kp N0  &kp N1  &kp N2  &kp N3  &kp DOT   &trans
@@ -129,7 +129,7 @@
             // | ____ |  [   |  ]   |  +   |  _   |  -   |   |  BS  |  @   |  ->  |  =>  |  ::  | ____ |
             //                      | ____ | ____ | ____ |   | ____ | ____ | ____ |
             // BS = backslash. ->  =>  :: are macros.
-            bindings = 
+            bindings = <
             &trans &kp GRAVE &kp LT   &kp GT   &kp TILDE &kp PIPE    &kp AMPS  &kp STAR &kp QMARK &kp EXCL &kp CARET  &trans
             &trans &kp LBRC  &kp LPAR &kp RPAR &kp RBRC  &kp EQUAL   &kp COLON &kp DQT  &kp HASH  &kp DLLR &kp PRCNT  &trans
             &trans &kp LBKT  &kp RBKT &kp PLUS &kp UNDER &kp MINUS   &kp BSLH  &kp AT   &m_arrow  &m_fat   &m_scope  &trans
