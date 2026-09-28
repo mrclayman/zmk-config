@@ -79,16 +79,16 @@
         base_layer {
             // -----------------------------------------------------------------------------
             // |  TAB |  Q   |  W   |  F   |  P   |  B   |   |  J   |  L   |  U   |  Y   |  ;   |  '   |
-            // |  ESC |  A   | R/AL | S/CT | T/SH |  G   |   |  M   | N/SH | E/CT | I/AL |  O   |  -   |
+            // |  ESC |  A   | R/AL | S/CT | T/SH |  G   |   |  M   | N/SH | E/CT | I/AL |  O   | CARN |
             // | CTRL |  Z   |  X   |  C   |  D   |  V   |   |  K   |  H   |  ,   |  .   |  /   | SHFT |
-            //                      | GUI  | SPC  | DEL  |   | ENT  | BSP  | ALT  |
+            //                      | GUI  | SPC  | DEL  |   | ENT  | BSP  | ACUT |
             //                      |      | NAV  | NUM  |   | SYM  | NUM  |      |
             // Combos (base only): W+F (   U+Y )   X+C [   ,+. ]   D+V {   K+H }
             bindings = <
             &kp TAB   &kp Q  &kp W          &kp F          &kp P          &kp B     &kp J  &kp L            &kp U          &kp Y          &kp SEMI  &kp SQT
-            &kp ESC   &kp A  &hml LALT R    &hml LCTRL S   &hml LSHFT T   &kp G     &kp M  &hmr LSHFT N     &hmr LCTRL E   &hmr LALT I    &kp O     &kp MINUS
+            &kp ESC   &kp A  &hml LALT R    &hml LCTRL S   &hml LSHFT T   &kp G     &kp M  &hmr LSHFT N     &hmr LCTRL E   &hmr LALT I    &kp O     &kp RA(EQUAL)
             &kp LCTRL &kp Z  &kp X          &kp C          &kp D          &kp V     &kp K  &kp H            &kp COMMA      &kp DOT        &kp FSLH  &kp RSHFT
-                                      &kp LGUI  &lt NAV SPACE  &lt NUM DEL    &lt SYM RET  &lt NUM BSPC  &kp LALT
+                                      &kp LGUI  &lt NAV SPACE  &lt NUM DEL    &lt SYM RET  &lt NUM BSPC  &kp RA(SQT)
             >;
         };
 
@@ -96,13 +96,13 @@
             // -----------------------------------------------------------------------------
             // | ____ |      |      |      |      |      |   |      | HOME | PGUP | PGDN | END  | ____ |
             // | ____ | GUI  | ALT  | CTRL | SHFT |      |   |      | LEFT | DOWN |  UP  | RGHT | ____ |
-            // | ____ |  ^Z  |  ^X  |  ^C  |  ^Y  |  ^V  |   | DEL  | BSPC | ^LFT | ^RGT |      | ____ |
+            // | ____ |  ^Z  |  ^X  |  ^C  |  ^Y  |  ^V  |   | DEL  | BSPC | ^LFT | ^RGT |  ů   | ____ |
             //                      | ____ | ____ | ____ |   | ____ | ____ | ____ |
             // ^Z undo, ^X cut, ^C copy, ^Y redo, ^V paste, ^LFT/^RGT word jump
             bindings = <
-            &trans &none      &none      &none       &none       &none       &none   &kp HOME  &kp PG_UP     &kp PG_DN      &kp END   &trans
-            &trans &kp LGUI   &kp LALT   &kp LCTRL   &kp LSHFT   &none       &none   &kp LEFT  &kp DOWN      &kp UP         &kp RIGHT &trans
-            &trans &kp LC(Z)  &kp LC(X)  &kp LC(C)   &kp LC(Y)   &kp LC(V)   &kp DEL &kp BSPC  &kp LC(LEFT)  &kp LC(RIGHT)  &none     &trans
+            &trans &none      &none      &none       &none       &none       &none   &kp HOME  &kp PG_UP     &kp PG_DN      &kp END         &trans
+            &trans &kp LGUI   &kp LALT   &kp LCTRL   &kp LSHFT   &none       &none   &kp LEFT  &kp DOWN      &kp UP         &kp RIGHT       &trans
+            &trans &kp LC(Z)  &kp LC(X)  &kp LC(C)   &kp LC(Y)   &kp LC(V)   &kp DEL &kp BSPC  &kp LC(LEFT)  &kp LC(RIGHT)  &kp RA(SEMI)    &trans
                                          &trans      &trans      &trans      &trans  &trans    &trans
             >;
         };
