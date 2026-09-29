@@ -27,7 +27,7 @@
             flavor = "balanced";
             tapping-term-ms = <280>;
             quick-tap-ms = <175>;
-            require-prior-idle-ms = <150>;
+            //require-prior-idle-ms = <150>;
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35 39 40 41>;
             hold-trigger-on-release;
@@ -38,7 +38,7 @@
             flavor = "balanced";
             tapping-term-ms = <280>;
             quick-tap-ms = <175>;
-            require-prior-idle-ms = <150>;
+            //require-prior-idle-ms = <150>;
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38>;
             hold-trigger-on-release;
@@ -109,15 +109,15 @@
 
         num_layer {  // held with either Del or Bksp thumb; BT keys on the left spares
             // -----------------------------------------------------------------------------
-            // | ____ | F10  |  F7  |  F8  |  F9  | BT0  |   |      |  7   |  8   |  9   |  /   |  -   |
-            // | ____ | F11  |  F4  |  F5  |  F6  | BT1  |   |      |  4   |  5   |  6   |  *   |  +   |
-            // | ____ | F12  |  F1  |  F2  |  F3  | BTCLR|   |  0   |  1   |  2   |  3   |  .   | ____ |
+            // | ____ | F9   |  F10 |  F11 |  F12 | BT0  |   |      |  7   |  8   |  9   |  /   |  -   |
+            // | ____ | F5   |  F6  |  F7  |  F8  | BT1  |   |      |  4   |  5   |  6   |  *   |  +   |
+            // | ____ | F1   |  F2  |  F3  |  F4  | BTCLR|   |  0   |  1   |  2   |  3   |  .   | ____ |
             //                      | ____ | ____ | ____ |   | ____ | ____ | ____ |
             // BT0/BT1 select Bluetooth profile 0/1, BTCLR clears the current profile
             bindings = <
-            &trans &kp F10  &kp F7  &kp F8  &kp F9  &bt BT_SEL 0   &none   &kp N7  &kp N8  &kp N9  &kp SLASH &kp MINUS
-            &trans &kp F11  &kp F4  &kp F5  &kp F6  &bt BT_SEL 1   &none   &kp N4  &kp N5  &kp N6  &kp STAR  &kp PLUS
-            &trans &kp F12  &kp F1  &kp F2  &kp F3  &bt BT_CLR     &kp N0  &kp N1  &kp N2  &kp N3  &kp DOT   &trans
+            &trans &kp F9   &kp F10 &kp F11 &kp F12 &bt BT_SEL 0   &none   &kp N7  &kp N8  &kp N9  &kp SLASH &kp MINUS
+            &trans &kp F5   &kp F6  &kp F7  &kp F8  &bt BT_SEL 1   &none   &kp N4  &kp N5  &kp N6  &kp STAR  &kp PLUS
+            &trans &kp F1   &kp F2  &kp F3  &kp F4  &bt BT_CLR     &kp N0  &kp N1  &kp N2  &kp N3  &kp DOT   &trans
                             &trans  &trans  &trans  &trans         &trans  &trans
             >;
         };
