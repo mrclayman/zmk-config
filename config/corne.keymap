@@ -84,9 +84,10 @@
             //                      | GUI  | SPC  | DEL  |   | ENT  | BSP  | ACUT |
             //                      |      | NAV  | NUM  |   | SYM  | NUM  |      |
             // Combos (base only): W+F (   U+Y )   X+C [   ,+. ]   D+V {   K+H }
+            display-name = "Base";
             bindings = <
-            &kp TAB   &kp Q  &kp W          &kp F          &kp P          &kp B     &kp J  &kp L            &kp U          &kp Y          &kp SEMI  &kp SQT
-            &kp ESC   &kp A  &hml LALT R    &hml LCTRL S   &hml LSHFT T   &kp G     &kp M  &hmr LSHFT N     &hmr LCTRL E   &hmr LALT I    &kp O     &kp RA(EQUAL)
+            &kp ESC   &kp Q  &kp W          &kp F          &kp P          &kp B     &kp J  &kp L            &kp U          &kp Y          &kp SEMI  &kp SQT
+            &kp TAB   &kp A  &hml LALT R    &hml LCTRL S   &hml LSHFT T   &kp G     &kp M  &hmr LSHFT N     &hmr LCTRL E   &hmr LALT I    &kp O     &kp RA(EQUAL)
             &kp LCTRL &kp Z  &kp X          &kp C          &kp D          &kp V     &kp K  &kp H            &kp COMMA      &kp DOT        &kp FSLH  &kp RSHFT
                                       &kp LGUI  &lt NAV SPACE  &lt NUM DEL    &lt SYM RET  &lt NUM BSPC  &kp RA(SQT)
             >;
@@ -99,6 +100,7 @@
             // | ____ |  ^Z  |  ^X  |  ^C  |  ^Y  |  ^V  |   | DEL  | BSPC | ^LFT | ^RGT |  ů   | ____ |
             //                      | ____ | ____ | ____ |   | ____ | ____ | ____ |
             // ^Z undo, ^X cut, ^C copy, ^Y redo, ^V paste, ^LFT/^RGT word jump
+            display-name = "Nav";
             bindings = <
             &trans &none      &none      &none       &none       &none       &none   &kp HOME  &kp PG_UP     &kp PG_DN      &kp END         &trans
             &trans &kp LGUI   &kp LALT   &kp LCTRL   &kp LSHFT   &none       &none   &kp LEFT  &kp DOWN      &kp UP         &kp RIGHT       &trans
@@ -114,6 +116,7 @@
             // | ____ | F1   |  F2  |  F3  |  F4  | BTCLR|   |  0   |  1   |  2   |  3   |  .   | ____ |
             //                      | ____ | ____ | ____ |   | ____ | ____ | ____ |
             // BT0/BT1 select Bluetooth profile 0/1, BTCLR clears the current profile
+            display-name = "Num";
             bindings = <
             &trans &kp F9   &kp F10 &kp F11 &kp F12 &bt BT_SEL 0   &none   &kp N7  &kp N8  &kp N9  &kp SLASH &kp MINUS
             &trans &kp F5   &kp F6  &kp F7  &kp F8  &bt BT_SEL 1   &none   &kp N4  &kp N5  &kp N6  &kp STAR  &kp PLUS
@@ -129,6 +132,7 @@
             // | ____ |  [   |  ]   |  +   |  -   |  _   |   |  !   |  @   |  #   |  $   |  %   | ____ |
             //                      | ____ | ____ | ____ |   | ____ | ____ | ____ |
             // BS = backslash. ->  =>  :: are macros.
+            display-name = "Sym";
             bindings = <
             &trans &kp GRAVE &kp LT   &kp GT   &kp TILDE &kp PIPE    &kp BSLH  &kp DQT  &m_arrow  &m_fat    &m_scope   &trans
             &trans &kp LBRC  &kp LPAR &kp RPAR &kp RBRC  &kp EQUAL   &kp CARET &kp AMPS &kp STAR  &kp COLON &kp QMARK  &trans
