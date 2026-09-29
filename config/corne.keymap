@@ -124,15 +124,15 @@
 
         sym_layer {  // held with right thumb (Enter)
             // -----------------------------------------------------------------------------
-            // | ____ |  `   |  <   |  >   |  ~   |  |   |   |  &   |  *   |  ?   |  !   |  ^   | ____ |
-            // | ____ |  {   |  (   |  )   |  }   |  =   |   |  :   |  "   |  #   |  $   |  %   | ____ |
-            // | ____ |  [   |  ]   |  +   |  -   |  _   |   |  BS  |  @   |  ->  |  =>  |  ::  | ____ |
+            // | ____ |  `   |  <   |  >   |  ~   |  |   |   |  BS  |  "   |  ->  |  =>  |  ::  | ____ |
+            // | ____ |  {   |  (   |  )   |  }   |  =   |   |  ^   |  &   |  *   |  :   |  ?   | ____ |
+            // | ____ |  [   |  ]   |  +   |  -   |  _   |   |  !   |  @   |  #   |  $   |  %   | ____ |
             //                      | ____ | ____ | ____ |   | ____ | ____ | ____ |
             // BS = backslash. ->  =>  :: are macros.
             bindings = <
-            &trans &kp GRAVE &kp LT   &kp GT   &kp TILDE &kp PIPE    &kp AMPS  &kp STAR &kp QMARK &kp EXCL &kp CARET  &trans
-            &trans &kp LBRC  &kp LPAR &kp RPAR &kp RBRC  &kp EQUAL   &kp COLON &kp DQT  &kp HASH  &kp DLLR &kp PRCNT  &trans
-            &trans &kp LBKT  &kp RBKT &kp PLUS &kp MINUS &kp UNDER   &kp BSLH  &kp AT   &m_arrow  &m_fat   &m_scope  &trans
+            &trans &kp GRAVE &kp LT   &kp GT   &kp TILDE &kp PIPE    &kp BSLH  &kp DQT  &m_arrow  &m_fat    &m_scope   &trans
+            &trans &kp LBRC  &kp LPAR &kp RPAR &kp RBRC  &kp EQUAL   &kp CARET &kp AMPS &kp STAR  &kp COLON &kp QMARK  &trans
+            &trans &kp LBKT  &kp RBKT &kp PLUS &kp MINUS &kp UNDER   &kp EXCL  &kp AT   &kp HASH  &kp DLLR  &kp PRCNT  &trans
                              &trans   &trans   &trans    &trans      &trans    &trans
             >;
         };
