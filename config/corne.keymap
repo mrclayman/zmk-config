@@ -43,6 +43,12 @@
             hold-trigger-key-positions = <0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38>;
             hold-trigger-on-release;
         };
+        u_caps_word: u_caps_word {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&caps_word>, <&kp CAPS>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
     };
 
     macros {
@@ -78,8 +84,8 @@
 
         base_layer {
             // -----------------------------------------------------------------------------
-            // |  TAB |  Q   |  W   |  F   |  P   |  B   |   |  J   |  L   |  U   |  Y   |  ;   |  '   |
-            // |  ESC |  A   | R/AL | S/CT | T/SH |  G   |   |  M   | N/SH | E/CT | I/AL |  O   | CARN |
+            // |  ESC |  Q   |  W   |  F   |  P   |  B   |   |  J   |  L   |  U   |  Y   |  ;   |  '   |
+            // |  TAB |  A   | R/AL | S/CT | T/SH |  G   |   |  M   | N/SH | E/CT | I/AL |  O   | CARN |
             // | CTRL |  Z   |  X   |  C   |  D   |  V   |   |  K   |  H   |  ,   |  .   |  /   | SHFT |
             //                      | GUI  | SPC  | DEL  |   | ENT  | BSP  | ACUT |
             //                      |      | NAV  | NUM  |   | SYM  | NUM  |      |
@@ -96,16 +102,16 @@
         nav_layer {  // held with left thumb
             // -----------------------------------------------------------------------------
             // | ____ |      |      |      |      |      |   |      | HOME | PGUP | PGDN | END  | ____ |
-            // | ____ | GUI  | ALT  | CTRL | SHFT |      |   |      | LEFT | DOWN |  UP  | RGHT | ____ |
+            // | ____ | GUI  | ALT  | CTRL | SHFT | CAPS |   | INS  | LEFT | DOWN |  UP  | RGHT | ____ |
             // | ____ |  ^Z  |  ^X  |  ^C  |  ^Y  |  ^V  |   | DEL  | BSPC | ^LFT | ^RGT |  ů   | ____ |
             //                      | ____ | ____ | ____ |   | ____ | ____ | ____ |
             // ^Z undo, ^X cut, ^C copy, ^Y redo, ^V paste, ^LFT/^RGT word jump
             display-name = "Nav";
             bindings = <
-            &trans &none      &none      &none       &none       &none       &none   &kp HOME  &kp PG_UP     &kp PG_DN      &kp END         &trans
-            &trans &kp LGUI   &kp LALT   &kp LCTRL   &kp LSHFT   &none       &none   &kp LEFT  &kp DOWN      &kp UP         &kp RIGHT       &trans
-            &trans &kp LC(Z)  &kp LC(X)  &kp LC(C)   &kp LC(Y)   &kp LC(V)   &kp DEL &kp BSPC  &kp LC(LEFT)  &kp LC(RIGHT)  &kp RA(SEMI)    &trans
-                                         &trans      &trans      &trans      &trans  &trans    &trans
+            &trans &none      &none      &none       &none       &none         &none   &kp HOME  &kp PG_UP     &kp PG_DN      &kp END         &trans
+            &trans &kp LGUI   &kp LALT   &kp LCTRL   &kp LSHFT   &u_caps_word  &kp INS &kp LEFT  &kp DOWN      &kp UP         &kp RIGHT       &trans
+            &trans &kp LC(Z)  &kp LC(X)  &kp LC(C)   &kp LC(Y)   &kp LC(V)     &kp DEL &kp BSPC  &kp LC(LEFT)  &kp LC(RIGHT)  &kp RA(SEMI)    &trans
+                                         &trans      &trans      &trans        &trans  &trans    &trans
             >;
         };
 
