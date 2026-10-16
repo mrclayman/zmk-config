@@ -89,17 +89,17 @@
         base_layer {
             // -----------------------------------------------------------------------------
             // |  ESC |  Q   |  W   |  F   |  P   |  B   |   |  J   |  L   |  U   |  Y   |  ;   |  '   |
-            // |  TAB |  A   | R/AL | S/CT | T/SH |  G   |   |  M   | N/SH | E/CT | I/AL |  O   | CARN |
-            // | CTRL |  Z   |  X   |  C   |  D   |  V   |   |  K   |  H   |  ,   |  .   |  /   | SHFT |
-            //                      | GUI  | SPC  | DEL  |   | ENT  | BSP  | ACUT |
-            //                      |      | NAV  | NUM  |   | SYM  | NUM  |      |
+            // |  TAB |  A   | R/AL | S/CT |  T   |  G   |   |  M   |  N   | E/CT | I/AL |  O   | CARN |
+            // | SHFT |  Z   |  X   |  C   |  D   |  V   |   |  K   |  H   |  ,   |  .   |  /   | SHFT |
+            //                      | DEL  | SPC  | GUI  |   | ENT  | BSP  | ACUT |
+            //                      | NUM  | NAV  |      |   | NUM  | SYM  |      |
             // Combos (base only): W+F (   U+Y )   X+C [   ,+. ]   D+V {   K+H }
             display-name = "Base";
             bindings = <
-            &kp ESC   &kp Q  &kp W          &kp F          &kp P          &kp B     &kp J  &kp L            &kp U          &kp Y        &kp SEMI  &kp SQT
-            &kp TAB   &kp A  &hml LALT R    &hml LCTRL S   &hml LSHFT T   &kp G     &kp M  &hmr LSHFT N     &hmr LCTRL E   &hmr LALT I  &kp O     &kp RS(RA(DOT))
-            &kp LCTRL &kp Z  &kp X          &kp C          &kp D          &kp V     &kp K  &kp H            &kp COMMA      &kp DOT      &kp FSLH  &kp RSHFT
-                                      &kp LGUI  &lt NAV SPACE  &lt NUM DEL    &lt SYM RET  &lt NUM BSPC  &kp RA(SQT)
+            &kp ESC   &kp Q  &kp W        &kp F         &kp P          &kp B         &kp J        &kp L         &kp U          &kp Y        &kp SEMI  &kp SQT
+            &kp TAB   &kp A  &hml LALT R  &hml LCTRL S  &kp T          &kp G         &kp M        &kp N         &hmr RCTRL E   &hmr LALT I  &kp O     &kp RS(RA(DOT))
+            &kp LSHFT &kp Z  &kp X        &kp C         &kp D          &kp V         &kp K        &kp H         &kp COMMA      &kp DOT      &kp FSLH  &kp RSHFT
+                                          &lt NUM DEL   &lt NAV SPACE  &kp LGUI      &lt NUM RET  &lt SYM BSPC  &kp RA(SQT)
             >;
         };
 
@@ -121,17 +121,17 @@
 
         num_layer {  // held with either Del or Bksp thumb; BT keys on the left spares
             // -----------------------------------------------------------------------------
-            // | ____ | F9   |  F10 |  F11 |  F12 | BT0  |   |      |  7   |  8   |  9   |  /   |  -   |
-            // | ____ | F5   |  F6  |  F7  |  F8  | BT1  |   |      |  4   |  5   |  6   |  *   |  +   |
-            // | ____ | F1   |  F2  |  F3  |  F4  | BTCLR|   |  0   |  1   |  2   |  3   |  .   | ____ |
-            //                      | ____ | ____ | ____ |   | ____ | ____ | ____ |
+            // | ____ | F9   |  F10 |  F11 |  F12 | BT0  |   |      |  7   |  8   |  9   |  -   |  /   |
+            // | ____ | F5   |  F6  |  F7  |  F8  | BT1  |   |      |  4   |  5   |  6   |  +   |  *   |
+            // | ____ | F1   |  F2  |  F3  |  F4  | BTCLR|   |      |  1   |  2   |  3   |  .   | ____ |
+            //                      | ____ | ____ | ____ |   | ____ |  0   | ____ |
             // BT0/BT1 select Bluetooth profile 0/1, BTCLR clears the current profile
             display-name = "Num";
             bindings = <
-            &trans &kp F9   &kp F10 &kp F11 &kp F12 &bt BT_SEL 0   &none   &kp N7  &kp N8  &kp N9  &kp SLASH &kp MINUS
-            &trans &kp F5   &kp F6  &kp F7  &kp F8  &bt BT_SEL 1   &none   &kp N4  &kp N5  &kp N6  &kp STAR  &kp PLUS
-            &trans &kp F1   &kp F2  &kp F3  &kp F4  &bt BT_CLR     &kp N0  &kp N1  &kp N2  &kp N3  &kp DOT   &trans
-                            &trans  &trans  &trans  &trans         &trans  &trans
+            &trans &kp F9   &kp F10 &kp F11 &kp F12 &bt BT_SEL 0   &none   &kp N7  &kp N8  &kp N9  &kp MINUS  &kp SLASH
+            &trans &kp F5   &kp F6  &kp F7  &kp F8  &bt BT_SEL 1   &none   &kp N4  &kp N5  &kp N6  &kp PLUS   &kp STAR
+            &trans &kp F1   &kp F2  &kp F3  &kp F4  &bt BT_CLR     &none   &kp N1  &kp N2  &kp N3  &kp DOT    &trans
+                                    &trans  &trans  &trans         &trans  &kp N0  &trans
             >;
         };
 
