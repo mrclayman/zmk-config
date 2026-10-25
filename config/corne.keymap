@@ -66,10 +66,10 @@
         compatible = "zmk,combos";
         // Opens on the left hand (outer column + adjacent letter), closes on the right
         // (mirrored). Chosen so the chord never lands entirely on one hand's fingers.
-        combo_lbrc { timeout-ms = <30>; require-prior-idle-ms = <100>; layers = <BASE>; key-positions = <0 1>;   bindings = <&kp LBRC>; };  // Alt+Q
+        combo_lbrc { timeout-ms = <30>; require-prior-idle-ms = <100>; layers = <BASE>; key-positions = <0 1>;   bindings = <&kp LBRC>; };  // Colon+Q
         combo_lpar { timeout-ms = <30>; require-prior-idle-ms = <100>; layers = <BASE>; key-positions = <12 13>; bindings = <&kp LPAR>; };  // GUI+A
-        combo_lbkt { timeout-ms = <30>; require-prior-idle-ms = <100>; layers = <BASE>; key-positions = <24 25>; bindings = <&kp LBKT>; };  // Shift+Z
-        combo_rbrc { timeout-ms = <30>; require-prior-idle-ms = <100>; layers = <BASE>; key-positions = <10 11>; bindings = <&kp RBRC>; };  // ;+Ring
+        combo_lbkt { timeout-ms = <30>; require-prior-idle-ms = <100>; layers = <BASE>; key-positions = <24 25>; bindings = <&kp LBKT>; };  // Semi+Z
+        combo_rbrc { timeout-ms = <30>; require-prior-idle-ms = <100>; layers = <BASE>; key-positions = <10 11>; bindings = <&kp RBRC>; };  // '+Ring
         combo_rpar { timeout-ms = <30>; require-prior-idle-ms = <100>; layers = <BASE>; key-positions = <22 23>; bindings = <&kp RPAR>; };  // O+Acute
         combo_rbkt { timeout-ms = <30>; require-prior-idle-ms = <100>; layers = <BASE>; key-positions = <34 35>; bindings = <&kp RBKT>; };  // //+Caron
     };
@@ -79,34 +79,38 @@
 
         base_layer {
             // -----------------------------------------------------------------------------
-            // | ALT  |  Q   |  W   |  F   |  P   |  B   |   |  J   |  L   |  U   |  Y   |  ;   | RING |
+            // | COLN |  Q   |  W   |  F   |  P   |  B   |   |  J   |  L   |  U   |  Y   |  '   | RING |
             // | GUI  |  A   | R/AL | S/CT |  T   |  G   |   |  M   |  N   | E/CT | I/AL |  O   | ACUT |
-            // | SHFT |  Z   |  X   |  C   |  D   |  V   |   |  K   |  H   |  ,   |  .   |  /   | CARN |
-            //                      | ESC  | SPC  |  '   |   | ENT  | BSP  | DEL  |
+            // | SEMI |  Z   |  X   |  C   |  D   |  V   |   |  K   |  H   |  ,   |  .   |  /   | CARN |
+            //                      | ESC  | SPC  | TAB  |   | ENT  | BSP  | DEL  |
             //                      | MEDIA| NAV  |      |   | SYM  | NUM  | FUN  |
-            // Combos (base only): Alt+Q {   GUI+A (   Shift+Z [   ;+Ring }   O+Acute )   //+Caron ]
+            // Combos (base only): Colon+Q {   GUI+A (   Semi+Z [   '+Ring }   O+Acute )   //+Caron ]
+            // ' replaces ; on the home block (canonical Miryoku); bare ; and : now live on
+            // the left outer column instead of Alt/Shift, which remain on the homerow mods.
             display-name = "Base";
             bindings = <
-            &kp LALT  &kp Q  &kp W        &kp F         &kp P          &kp B         &kp J        &kp L         &kp U          &kp Y        &kp SEMI  &kp RS(RA(N0))
+            &kp COLON &kp Q  &kp W        &kp F         &kp P          &kp B         &kp J        &kp L         &kp U          &kp Y        &kp SQT   &kp RS(RA(N0))
             &kp LGUI  &kp A  &hml LALT R  &hml LCTRL S  &hml LSHFT T   &kp G         &kp M        &hmr RSHFT N  &hmr RCTRL E   &hmr LALT I  &kp O     &kp RA(SQT)
-            &kp LSHFT &kp Z  &kp X        &kp C         &kp D          &kp V         &kp K        &kp H         &kp COMMA      &kp DOT      &kp FSLH  &kp RS(RA(DOT))
-                                          &lt MEDIA ESC &lt NAV SPACE  &kp SQT       &lt SYM RET  &lt NUM BSPC  &lt FUN DEL
+            &kp SEMI  &kp Z  &kp X        &kp C         &kp D          &kp V         &kp K        &kp H         &kp COMMA      &kp DOT      &kp FSLH  &kp RS(RA(DOT))
+                                          &lt MEDIA ESC &lt NAV SPACE  &kp TAB       &lt SYM RET  &lt NUM BSPC  &lt FUN DEL
             >;
         };
 
         nav_layer {  // held with left thumb; right thumb taps are plain Ret/Bspc/Del
             // -----------------------------------------------------------------------------
-            // | ____ |      |      |      |      |      |   |      | HOME | PGDN | PGUP | END  | ____ |
-            // | ____ | GUI  | ALT  | CTRL | SHFT | CAPS |   | DEL  | LEFT | DOWN |  UP  | RGHT | ____ |
-            // | ____ |  ^Z  |  ^X  |  ^C  |  ^Y  |  ^V  |   | BSPC | INS  | ^LFT | ^RGT | ____ | ____ |
+            // | ____ |      |      |      |      |      |   | RDO  | PST  | CPY  | CUT  | UND  | ____ |
+            // | ____ | GUI  | ALT  | CTRL | SHFT |      |   | CAPS | LEFT | DOWN |  UP  | RGHT | ____ |
+            // | ____ |  ^Z  |  ^X  |  ^C  |  ^Y  |  ^V  |   | INS  | HOME | PGDN | PGUP | END  | ____ |
             //                      | ____ | ____ | ____ |   | ENT  | BSP  | DEL  |
-            // ^Z undo, ^X cut, ^C copy, ^Y redo, ^V paste, ^LFT/^RGT word jump
+            // Left hand unchanged (^Z undo, ^X cut, ^C copy, ^Y redo, ^V paste). Right hand
+            // now matches canonical Miryoku Nav exactly: word-jump is Ctrl(left)+Arrow(right)
+            // chorded through the thumb hold rather than a dedicated key.
             display-name = "Nav";
             bindings = <
-            &trans &none      &none      &none       &none       &none         &none    &kp HOME  &kp PG_DN     &kp PG_UP      &kp END     &trans
-            &trans &kp LGUI   &kp LALT   &kp LCTRL   &kp LSHFT   &u_caps_word  &kp DEL  &kp LEFT  &kp DOWN      &kp UP         &kp RIGHT   &trans
-            &trans &kp LC(Z)  &kp LC(X)  &kp LC(C)   &kp LC(Y)   &kp LC(V)     &kp BSPC &kp INS   &kp LC(LEFT)  &kp LC(RIGHT)  &trans      &trans
-                                         &none       &trans      &none         &kp RET  &kp BSPC  &kp DEL
+            &trans &none      &none      &none       &none       &none        &kp K_AGAIN  &kp LS(INS)  &kp LC(INS)  &kp LS(DEL)  &kp K_UNDO &trans
+            &trans &kp LGUI   &kp LALT   &kp LCTRL   &kp LSHFT   &u_caps_word  &u_caps_word &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT  &trans
+            &trans &kp LC(Z)  &kp LC(X)  &kp LC(C)   &kp LC(Y)   &kp LC(V)     &kp INS      &kp HOME     &kp PG_DN    &kp PG_UP    &kp END    &trans
+                                         &none       &trans      &none        &kp RET      &kp BSPC     &kp DEL
             >;
         };
 
@@ -153,7 +157,7 @@
             &trans &kp F12   &kp F7  &kp F8  &kp F9  &kp PSCRN       &trans &trans &trans &trans &trans    &trans
             &trans &kp F11   &kp F4  &kp F5  &kp F6  &kp SLCK        &trans &kp LSHFT    &kp LCTRL    &kp LALT   &kp LGUI  &trans
             &trans &kp F10   &kp F1  &kp F2  &kp F3  &kp PAUSE_BREAK &trans &trans       &trans       &trans     &trans    &trans
-                                     &kp K_APP &kp SPACE &kp TAB     &none  &none        &trans
+                                     &kp K_APP &kp SPACE &trans      &none  &none        &trans
             >;
         };
 
