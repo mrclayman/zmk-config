@@ -12,6 +12,8 @@
 #define NAV  1
 #define NUM  2
 #define SYM  3
+#define FUN  4
+#define MEDIA 5
 
 #define TAPPING_TERM 200
 #define Q_TAPPING_TERM 200
@@ -21,6 +23,11 @@
  * 42-key order: left rows 0-5 / 12-17 / 24-29, right rows 6-11 / 18-23 / 30-35,
  * thumbs 36-38 (left), 39-41 (right).
  * Base is Colemak-DH, sent as-is (assumes the OS is set to QWERTY).
+ *
+ * Miryoku-style layering: Nav is right-hand content held with the left thumb;
+ * Num/Sym/Fun are left-hand content held with the right thumb (Bspc/Enter/Del).
+ * This keeps the holding hand's thumb and the typing hand's fingers separate,
+ * and matches the Miryoku 36-key layout used on the work Chocofi.
  */
 
 / {
@@ -55,32 +62,16 @@
         };
     };
 
-    macros {
-        m_arrow: m_arrow {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &kp MINUS &kp GT>;
-        };
-        m_fat: m_fat {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &kp EQUAL &kp GT>;
-        };
-        m_scope: m_scope {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &kp COLON &kp COLON>;
-        };
-    };
-
     combos {
         compatible = "zmk,combos";
-        combo_lpar  { timeout-ms = <30>; require-prior-idle-ms = <100>; layers = <BASE>; key-positions = <2 3>;   bindings = <&kp LPAR>; };  // W+F
-        combo_rpar  { timeout-ms = <30>; require-prior-idle-ms = <100>; layers = <BASE>; key-positions = <8 9>;   bindings = <&kp RPAR>; };  // U+Y
-        combo_lbkt  { timeout-ms = <30>; require-prior-idle-ms = <100>; layers = <BASE>; key-positions = <26 27>; bindings = <&kp LBKT>; };  // X+C
-        combo_rbkt  { timeout-ms = <30>; require-prior-idle-ms = <100>; layers = <BASE>; key-positions = <32 33>; bindings = <&kp RBKT>; };  // , + .
-        combo_lbrc  { timeout-ms = <30>; require-prior-idle-ms = <100>; layers = <BASE>; key-positions = <28 29>; bindings = <&kp LBRC>; };  // D+V
-        combo_rbrc  { timeout-ms = <30>; require-prior-idle-ms = <100>; layers = <BASE>; key-positions = <30 31>; bindings = <&kp RBRC>; };  // K+H
+        // Opens on the left hand (outer column + adjacent letter), closes on the right
+        // (mirrored). Chosen so the chord never lands entirely on one hand's fingers.
+        combo_lbrc { timeout-ms = <30>; require-prior-idle-ms = <100>; layers = <BASE>; key-positions = <0 1>;   bindings = <&kp LBRC>; };  // Alt+Q
+        combo_lpar { timeout-ms = <30>; require-prior-idle-ms = <100>; layers = <BASE>; key-positions = <12 13>; bindings = <&kp LPAR>; };  // GUI+A
+        combo_lbkt { timeout-ms = <30>; require-prior-idle-ms = <100>; layers = <BASE>; key-positions = <24 25>; bindings = <&kp LBKT>; };  // Shift+Z
+        combo_rbrc { timeout-ms = <30>; require-prior-idle-ms = <100>; layers = <BASE>; key-positions = <10 11>; bindings = <&kp RBRC>; };  // ;+Ring
+        combo_rpar { timeout-ms = <30>; require-prior-idle-ms = <100>; layers = <BASE>; key-positions = <22 23>; bindings = <&kp RPAR>; };  // O+Acute
+        combo_rbkt { timeout-ms = <30>; require-prior-idle-ms = <100>; layers = <BASE>; key-positions = <34 35>; bindings = <&kp RBKT>; };  // //+Caron
     };
 
     keymap {
@@ -88,66 +79,97 @@
 
         base_layer {
             // -----------------------------------------------------------------------------
-            // |  ESC |  Q   |  W   |  F   |  P   |  B   |   |  J   |  L   |  U   |  Y   |  ;   |  '   |
-            // |  TAB |  A   | R/AL | S/CT |  T   |  G   |   |  M   |  N   | E/CT | I/AL |  O   | CARN |
-            // | SHFT |  Z   |  X   |  C   |  D   |  V   |   |  K   |  H   |  ,   |  .   |  /   | SHFT |
-            //                      | DEL  | SPC  | GUI  |   | ENT  | BSP  | ACUT |
-            //                      | NUM  | NAV  |      |   | NUM  | SYM  |      |
-            // Combos (base only): W+F (   U+Y )   X+C [   ,+. ]   D+V {   K+H }
+            // | ALT  |  Q   |  W   |  F   |  P   |  B   |   |  J   |  L   |  U   |  Y   |  ;   | RING |
+            // | GUI  |  A   | R/AL | S/CT |  T   |  G   |   |  M   |  N   | E/CT | I/AL |  O   | ACUT |
+            // | SHFT |  Z   |  X   |  C   |  D   |  V   |   |  K   |  H   |  ,   |  .   |  /   | CARN |
+            //                      | ESC  | SPC  |  '   |   | ENT  | BSP  | DEL  |
+            //                      | MEDIA| NAV  |      |   | SYM  | NUM  | FUN  |
+            // Combos (base only): Alt+Q {   GUI+A (   Shift+Z [   ;+Ring }   O+Acute )   //+Caron ]
             display-name = "Base";
             bindings = <
-            &kp ESC   &kp Q  &kp W        &kp F         &kp P          &kp B         &kp J        &kp L         &kp U          &kp Y        &kp SEMI  &kp SQT
-            &kp TAB   &kp A  &hml LALT R  &hml LCTRL S  &hml LSHFT T   &kp G         &kp M        &hmr RSHFT N  &hmr RCTRL E   &hmr LALT I  &kp O     &kp RS(RA(DOT))
-            &kp LSHFT &kp Z  &kp X        &kp C         &kp D          &kp V         &kp K        &kp H         &kp COMMA      &kp DOT      &kp FSLH  &kp RSHFT
-                                          &lt NUM DEL   &lt NAV SPACE  &kp LGUI      &lt NUM RET  &lt SYM BSPC  &kp RA(SQT)
+            &kp LALT  &kp Q  &kp W        &kp F         &kp P          &kp B         &kp J        &kp L         &kp U          &kp Y        &kp SEMI  &kp RS(RA(N0))
+            &kp LGUI  &kp A  &hml LALT R  &hml LCTRL S  &hml LSHFT T   &kp G         &kp M        &hmr RSHFT N  &hmr RCTRL E   &hmr LALT I  &kp O     &kp RA(SQT)
+            &kp LSHFT &kp Z  &kp X        &kp C         &kp D          &kp V         &kp K        &kp H         &kp COMMA      &kp DOT      &kp FSLH  &kp RS(RA(DOT))
+                                          &lt MEDIA ESC &lt NAV SPACE  &kp SQT       &lt SYM RET  &lt NUM BSPC  &lt FUN DEL
             >;
         };
 
-        nav_layer {  // held with left thumb
+        nav_layer {  // held with left thumb; right thumb taps are plain Ret/Bspc/Del
             // -----------------------------------------------------------------------------
             // | ____ |      |      |      |      |      |   |      | HOME | PGDN | PGUP | END  | ____ |
             // | ____ | GUI  | ALT  | CTRL | SHFT | CAPS |   | DEL  | LEFT | DOWN |  UP  | RGHT | ____ |
-            // | ____ |  ^Z  |  ^X  |  ^C  |  ^Y  |  ^V  |   | BSPC | INS  | ^LFT | ^RGT |  ů   | ____ |
-            //                      | ____ | ____ | ____ |   | ____ | ____ | ____ |
+            // | ____ |  ^Z  |  ^X  |  ^C  |  ^Y  |  ^V  |   | BSPC | INS  | ^LFT | ^RGT | ____ | ____ |
+            //                      | ____ | ____ | ____ |   | ENT  | BSP  | DEL  |
             // ^Z undo, ^X cut, ^C copy, ^Y redo, ^V paste, ^LFT/^RGT word jump
             display-name = "Nav";
             bindings = <
             &trans &none      &none      &none       &none       &none         &none    &kp HOME  &kp PG_DN     &kp PG_UP      &kp END     &trans
             &trans &kp LGUI   &kp LALT   &kp LCTRL   &kp LSHFT   &u_caps_word  &kp DEL  &kp LEFT  &kp DOWN      &kp UP         &kp RIGHT   &trans
-            &trans &kp LC(Z)  &kp LC(X)  &kp LC(C)   &kp LC(Y)   &kp LC(V)     &kp BSPC &kp INS   &kp LC(LEFT)  &kp LC(RIGHT)  &kp RS(RA(N0))  &trans
-                                         &trans      &trans      &trans        &trans   &trans    &trans
+            &trans &kp LC(Z)  &kp LC(X)  &kp LC(C)   &kp LC(Y)   &kp LC(V)     &kp BSPC &kp INS   &kp LC(LEFT)  &kp LC(RIGHT)  &trans      &trans
+                                         &none       &trans      &none         &kp RET  &kp BSPC  &kp DEL
             >;
         };
 
-        num_layer {  // held with either Del or Enter thumb; BT keys on the left spares
+        num_layer {  // held with right thumb (Bspc); numerals on the left hand, Miryoku-style
             // -----------------------------------------------------------------------------
-            // | ____ | F12  |  F7  |  F8  |  F9  | BT0  |   |      |  7   |  8   |  9   |  -   |  /   |
-            // | ____ | F11  |  F4  |  F5  |  F6  | BT1  |   | DEL  |  4   |  5   |  6   |  +   |  *   |
-            // | ____ | F10  |  F1  |  F2  |  F3  | BTCLR|   | BSPC |  1   |  2   |  3   |  .   | ____ |
-            //                      | ____ | ____ | ____ |   | ____ |  0   | ____ |
-            // BT0/BT1 select Bluetooth profile 0/1, BTCLR clears the current profile
+            // | ____ |  [   |  7   |  8   |  9   |  ]   |   | ____ | SHFT | CTRL | ALT  | GUI  | ____ |
+            // | ____ |  ;   |  4   |  5   |  6   |  =   |   | ____ | SHFT | CTRL | ALT  | GUI  | ____ |
+            // | ____ |  `   |  1   |  2   |  3   |  \   |   | ____ | ____ | ____ | ____ | ____ | ____ |
+            //                      |  .   |  0   |  -   |   | ____ | ____ | ____ |
             display-name = "Num";
             bindings = <
-            &trans &kp F12   &kp F7  &kp F8  &kp F9  &bt BT_SEL 0  &none     &kp N7  &kp N8  &kp N9  &kp MINUS  &kp SLASH
-            &trans &kp F11   &kp F4  &kp F5  &kp F6  &bt BT_SEL 1  &kp DEL   &kp N4  &kp N5  &kp N6  &kp PLUS   &kp STAR
-            &trans &kp F10   &kp F1  &kp F2  &kp F3  &bt BT_CLR    &kp BSPC  &kp N1  &kp N2  &kp N3  &kp DOT    &trans
-                                    &trans  &trans  &trans         &trans    &kp N0  &trans
+            &trans &kp LBKT  &kp N7  &kp N8  &kp N9  &kp RBKT  &trans  &trans    &trans    &trans    &trans    &trans
+            &trans &kp SEMI  &kp N4  &kp N5  &kp N6  &kp EQUAL &trans  &kp LSHFT &kp LCTRL &kp LALT  &kp LGUI  &trans
+            &trans &kp GRAVE &kp N1  &kp N2  &kp N3  &kp BSLH  &trans  &trans    &trans    &trans    &trans    &trans
+                                     &kp DOT &kp N0   &kp MINUS &none  &trans    &none
             >;
         };
 
-        sym_layer {  // held with right thumb (Bksp)
+        sym_layer {  // held with right thumb (Enter); canonical Miryoku Sym, left hand
             // -----------------------------------------------------------------------------
-            // | ____ |  `   |  <   |  >   |  ~   |  |   |   |  "   |  &   |  *   |  \   |  ::  | ____ |
-            // | ____ |  {   |  (   |  )   |  }   |  =   |   |  :   |  $   |  %   |  ^   |  =>  | ____ |
-            // | ____ |  [   |  ]   |  +   |  -   |  _   |   |  ?   |  !   |  @   |  #   |  ->  | ____ |
-            //                      | ____ | ____ | ____ |   | ____ | ____ | ____ |
-            // BS = backslash. ->  =>  :: are macros.
+            // | ____ |  {   |  &   |  *   |  (   |  }   |   | ____ | SHFT | CTRL | ALT  | GUI  | ____ |
+            // | ____ |  :   |  $   |  %   |  ^   |  +   |   | ____ | SHFT | CTRL | ALT  | GUI  | ____ |
+            // | ____ |  ~   |  !   |  @   |  #   |  |   |   | ____ | ____ | ____ | ____ | ____ | ____ |
+            //                      |  (   |  )   |  _   |   | ____ | ____ | ____ |
+            // Matches the Miryoku Sym layer verbatim, including the duplicated ( next to ).
+            // Bracket/paren/brace combos live on the base layer; not remapped here yet.
             display-name = "Sym";
             bindings = <
-            &trans &kp GRAVE &kp LT   &kp GT   &kp TILDE &kp PIPE    &kp DQT    &kp AMPS &kp STAR  &kp BSLH  &m_scope  &trans
-            &trans &kp LBRC  &kp LPAR &kp RPAR &kp RBRC  &kp EQUAL   &kp COLON  &kp DLLR &kp PRCNT &kp CARET &m_fat    &trans
-            &trans &kp LBKT  &kp RBKT &kp PLUS &kp MINUS &kp UNDER   &kp QMARK  &kp EXCL &kp AT    &kp HASH  &m_arrow  &trans
-                             &trans   &trans   &trans    &trans      &trans     &trans
+            &trans &kp LBRC  &kp AMPS &kp STAR  &kp LPAR  &kp RBRC  &trans  &trans    &trans    &trans    &trans    &trans
+            &trans &kp COLON &kp DLLR &kp PRCNT &kp CARET &kp PLUS  &trans  &kp LSHFT &kp LCTRL &kp LALT  &kp LGUI  &trans
+            &trans &kp TILDE &kp EXCL &kp AT    &kp HASH  &kp PIPE  &trans  &trans    &trans    &trans    &trans    &trans
+                                      &kp LPAR  &kp RPAR  &kp UNDER &none   &none     &trans
+            >;
+        };
+
+        fun_layer {  // held with right thumb (Del); F-keys on the left hand, Miryoku-style
+            // -----------------------------------------------------------------------------
+            // | ____ | F12  |  F7  |  F8  |  F9  | PSCR |   | ____ | ____ | ____ | ____ | ____ | ____ |
+            // | ____ | F11  |  F4  |  F5  |  F6  | SLCK |   | ____ | SHFT | CTRL | ALT  | GUI  | ____ |
+            // | ____ | F10  |  F1  |  F2  |  F3  | PAUS |   | ____ | ____ | ____ | ____ | ____ | ____ |
+            //                      | APP  | SPC  | TAB  |   | ____ | ____ | ____ |
+            display-name = "Fun";
+            bindings = <
+            &trans &kp F12   &kp F7  &kp F8  &kp F9  &kp PSCRN       &trans &trans &trans &trans &trans    &trans
+            &trans &kp F11   &kp F4  &kp F5  &kp F6  &kp SLCK        &trans &kp LSHFT    &kp LCTRL    &kp LALT   &kp LGUI  &trans
+            &trans &kp F10   &kp F1  &kp F2  &kp F3  &kp PAUSE_BREAK &trans &trans       &trans       &trans     &trans    &trans
+                                     &kp K_APP &kp SPACE &kp TAB     &none  &none        &trans
+            >;
+        };
+
+        media_layer {  // held with left thumb (Esc); right-hand content, Miryoku-style
+            // -----------------------------------------------------------------------------
+            // | ____ |      |      |      |      |      |   | ____ |      |      |      |      | ____ |
+            // | ____ | GUI  | ALT  | CTRL | SHFT  |      |   | ____ | PREV | VOL- | VOL+ | NEXT | ____ |
+            // | ____ |      |      |      |       |      |   | ____ | BT0  | BT1  | BT2  | BT3  | ____ |
+            //                      | ____ | ____  | ____ |   | STOP | PLAY | MUTE |
+            // BT0-BT3 select Bluetooth profile 0-3.
+            display-name = "Media";
+            bindings = <
+            &trans &none      &none      &none       &none      &none  &trans &none        &none        &none        &none        &trans
+            &trans &kp LGUI   &kp LALT   &kp LCTRL   &kp LSHFT  &none  &trans &kp C_PREV   &kp C_VOL_DN &kp C_VOL_UP &kp C_NEXT   &trans
+            &trans &none      &none      &none       &none      &none  &trans &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &trans
+                                         &none       &trans     &none  &kp C_STOP &kp C_PP &kp C_MUTE
             >;
         };
     };
