@@ -96,10 +96,12 @@
             // Colon+Ring (also) toggles the Game layer.
             // ' replaces ; on the home block (canonical Miryoku); bare ; and : now live on
             // the left outer column instead of Alt/Shift, which remain on the homerow mods.
+            // ACUT (right outer, middle row) is a mod-tap mirroring GUI on the left outer
+            // column: tap for Acute, hold for RGUI.
             display-name = "Base";
             bindings = <
             &kp COLON &kp Q  &kp W        &kp F         &kp P          &kp B         &kp J        &kp L         &kp U          &kp Y        &kp SQT   &kp RS(RA(N0))
-            &kp LGUI  &kp A  &hml LALT R  &hml LCTRL S  &hml LSHFT T   &kp G         &kp M        &hmr RSHFT N  &hmr RCTRL E   &hmr LALT I  &kp O     &kp RA(SQT)
+            &kp LGUI  &kp A  &hml LALT R  &hml LCTRL S  &hml LSHFT T   &kp G         &kp M        &hmr RSHFT N  &hmr RCTRL E   &hmr LALT I  &kp O     &mt RGUI RA(SQT)
             &kp SEMI  &kp Z  &kp X        &kp C         &kp D          &kp V         &kp K        &kp H         &kp COMMA      &kp DOT      &kp FSLH  &kp RS(RA(DOT))
                                           &lt MEDIA ESC &lt NAV SPACE  &kp TAB       &lt SYM RET  &lt NUM BSPC  &lt FUN DEL
             >;
