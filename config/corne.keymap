@@ -87,9 +87,9 @@
 
         base_layer {
             // -----------------------------------------------------------------------------
-            // | COLN |  Q   |  W   |  F   |  P   |  B   |   |  J   |  L   |  U   |  Y   |  '   | RING |
-            // | GUI  |  A   | R/AL | S/CT |  T   |  G   |   |  M   |  N   | E/CT | I/AL |  O   | ACUT |
-            // | SEMI |  Z   |  X   |  C   |  D   |  V   |   |  K   |  H   |  ,   |  .   |  /   | CARN |
+            // | COLN |  Q   |  W   |  F   |  P   |  B   |   |  J   |  L   |  U   |  Y   |  '   | CARN     |
+            // | GUI  |  A   | R/AL | S/CT |  T   |  G   |   |  M   |  N   | E/CT | I/AL |  O   | ACUT/GUI |
+            // | SEMI |  Z   |  X   |  C   |  D   |  V   |   |  K   |  H   |  ,   |  .   |  /   | RING     |
             //                      | ESC  | SPC  | TAB  |   | ENT  | BSP  | DEL  |
             //                      | MEDIA| NAV  |      |   | SYM  | NUM  | FUN  |
             // Combos (base only): Colon+Q {   GUI+A (   Semi+Z [   '+Ring }   O+Acute )   //+Caron ]
@@ -100,9 +100,9 @@
             // column: tap for Acute, hold for RGUI.
             display-name = "Base";
             bindings = <
-            &kp COLON &kp Q  &kp W        &kp F         &kp P          &kp B         &kp J        &kp L         &kp U          &kp Y        &kp SQT   &kp RS(RA(N0))
+            &kp COLON &kp Q  &kp W        &kp F         &kp P          &kp B         &kp J        &kp L         &kp U          &kp Y        &kp SQT   &kp RS(RA(DOT))
             &kp LGUI  &kp A  &hml LALT R  &hml LCTRL S  &hml LSHFT T   &kp G         &kp M        &hmr RSHFT N  &hmr RCTRL E   &hmr LALT I  &kp O     &mt RGUI RA(SQT)
-            &kp SEMI  &kp Z  &kp X        &kp C         &kp D          &kp V         &kp K        &kp H         &kp COMMA      &kp DOT      &kp FSLH  &kp RS(RA(DOT))
+            &kp SEMI  &kp Z  &kp X        &kp C         &kp D          &kp V         &kp K        &kp H         &kp COMMA      &kp DOT      &kp FSLH  &kp RS(RA(N0))
                                           &lt MEDIA ESC &lt NAV SPACE  &kp TAB       &lt SYM RET  &lt NUM BSPC  &lt FUN DEL
             >;
         };
